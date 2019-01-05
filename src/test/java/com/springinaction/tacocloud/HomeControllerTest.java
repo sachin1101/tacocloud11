@@ -1,7 +1,7 @@
 package com.springinaction.tacocloud;
 
 
-import com.springinaction.tacocloud.tacos.controllers.HomeController;
+import com.springinaction.tacocloud.controllers.HomeController;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
