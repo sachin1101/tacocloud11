@@ -4,7 +4,7 @@ import com.springinaction.tacocloud.model.Ingredient;
 
 import java.util.List;
 
-public interface IngredientRepository {
+public interface IngredientRepositoryDB {
 
     List<Ingredient> findAll();
 
@@ -13,3 +13,4 @@ public interface IngredientRepository {
     Ingredient save(Ingredient ingredient);
 
 }
+

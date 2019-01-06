@@ -9,13 +9,13 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
-public class JDBCIngredientRepository implements IngredientRepository {
+public class IngredientRepositoryDBImpl implements IngredientRepositoryDB {
 
 
 
     private JdbcTemplate jdbc;
 
-    public JDBCIngredientRepository(JdbcTemplate jdbc) {
+    public IngredientRepositoryDBImpl(JdbcTemplate jdbc) {
         this.jdbc = jdbc;
     }
 
@@ -36,7 +36,13 @@ public class JDBCIngredientRepository implements IngredientRepository {
 
     @Override
     public Ingredient save(Ingredient ingredient) {
-        return null;
+        jdbc.update(
+                "insert into Ingredient (id, name, type) values (?, ?, ?)",
+                ingredient.getId(),
+                ingredient.getName(),
+                ingredient.getType().toString());
+
+        return findById(ingredient.getId());
     }
 
     private Ingredient mapRowToIngredient(ResultSet rs, int rowNum)
