@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public class DesignTacoController {
 
 
     @PostMapping
-    public String processDesign(@Valid Taco design , Errors errors) {
+    public String processDesign(Model model, @Valid Taco design , Errors errors, RedirectAttributes redirectAttributes) {
 
 
 
@@ -87,7 +88,7 @@ public class DesignTacoController {
            errors.getAllErrors().forEach((k)->{log.error(k.toString());});
            return "tacoDesignForm";
         }
-
+        redirectAttributes.addFlashAttribute("design", design);
 
         return "redirect:/orders/current";
     }
