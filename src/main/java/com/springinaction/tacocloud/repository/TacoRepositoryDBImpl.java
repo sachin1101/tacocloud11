@@ -75,6 +75,10 @@ public class TacoRepositoryDBImpl implements TacoRepositoryDB {
                     params.add(ingredient);
                 });
 
+        https://docs.spring.io/spring/docs/3.0.0.M4/reference/html/ch12s04.html
+
+        /*
+
 
         PreparedStatementCreator psc =
                 new PreparedStatementCreatorFactory(
@@ -82,6 +86,18 @@ public class TacoRepositoryDBImpl implements TacoRepositoryDB {
                         Types.BIGINT  ,  Types.VARCHAR
                 ).newPreparedStatementCreator(
                         params);
+
+
+         */
+
+        String [][] tmpArr = {{"99", "ABC"},{"99", "DEF"}};
+
+
+        PreparedStatementCreator psc =
+                new PreparedStatementCreatorFactory(
+                        "insert into Taco_Ingredients (taco, ingredient) values (?, ?)",  Types.BIGINT  ,  Types.VARCHAR
+                ).newPreparedStatementCreator(
+                        tmpArr);
 
 
 
