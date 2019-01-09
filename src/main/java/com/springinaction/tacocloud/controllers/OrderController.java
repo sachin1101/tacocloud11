@@ -3,6 +3,7 @@ package com.springinaction.tacocloud.controllers;
 
 import com.springinaction.tacocloud.model.Order;
 import com.springinaction.tacocloud.model.Taco;
+import com.springinaction.tacocloud.repository.OrderListRepositoryDB;
 import com.springinaction.tacocloud.repository.TacoRepositoryDB;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,12 @@ import java.util.List;
 public class OrderController {
 
     private TacoRepositoryDB tacoRepository;
+    private OrderListRepositoryDB orderListRepositoryDB;
 
     @Autowired
-    public OrderController(TacoRepositoryDB tacoRepositoryDB) {
-        this.tacoRepository = tacoRepositoryDB;
+    public OrderController(TacoRepositoryDB tacoRepository, OrderListRepositoryDB orderListRepositoryDB) {
+        this.tacoRepository = tacoRepository;
+        this.orderListRepositoryDB = orderListRepositoryDB;
     }
 
     @GetMapping("/current")

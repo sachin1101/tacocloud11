@@ -4,6 +4,7 @@ import com.springinaction.tacocloud.model.Taco;
 import lombok.Synchronized;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BatchPreparedStatementSetter;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementCreatorFactory;
@@ -12,6 +13,8 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
@@ -66,16 +69,23 @@ public class TacoRepositoryDBImpl implements TacoRepositoryDB {
 
 
 
+        int[] updateCounts = jdbc.batchUpdate(
+                "insert into Taco_Ingredients (taco, ingredient) values (?, ?)",
+                new BatchPreparedStatementSetter() {
+                    public void setValues(PreparedStatement ps, int i) throws SQLException {
+                        ps.setString(1, tacoDesign.getId().toString());
+                        ps.setString(2, tacoDesign.getIngredients().get(i));
 
-        List<String> params = new ArrayList<>();
+                    }
+
+                    public int getBatchSize() {
+                        return tacoDesign.getIngredients().size();
+                    }
+                } );
 
 
-        tacoDesign.getIngredients().forEach((ingredient)-> {
-                    params.add(tacoDesign.getId().toString());
-                    params.add(ingredient);
-                });
 
-        https://docs.spring.io/spring/docs/3.0.0.M4/reference/html/ch12s04.html
+      //  https://docs.spring.io/spring/docs/3.0.0.M4/reference/html/ch12s04.html
 
         /*
 
@@ -88,7 +98,7 @@ public class TacoRepositoryDBImpl implements TacoRepositoryDB {
                         params);
 
 
-         */
+
 
         String [][] tmpArr = {{"99", "ABC"},{"99", "DEF"}};
 
@@ -107,7 +117,7 @@ public class TacoRepositoryDBImpl implements TacoRepositoryDB {
         jdbc.update(psc, keyHolder);
 
 
-
+  */
 
 
 

@@ -2,17 +2,27 @@ package com.springinaction.tacocloud.model;
 
 import lombok.Data;
 
+import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.CreditCardNumber;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
 @Data
 //@RequiredArgsConstructor
+@Entity
+@Table(name="Taco_Order")
 public class Order {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
+
+
     @NotBlank(message="Name is required")
     private String name;
     @NotBlank(message="Street is required")
@@ -33,7 +43,10 @@ public class Order {
     private String ccCVV;
 
 
+    @ManyToMany(targetEntity=Taco.class)
     List<Taco> tacoList;
+
+    private Date placedAt;
 
     public void addToTacoList(Taco taco)
     {
@@ -42,6 +55,12 @@ public class Order {
             tacoList = new ArrayList<Taco>();
         }
         this.tacoList.add(taco);
+    }
+
+
+    @PrePersist
+    void placedAt() {
+        this.placedAt = new Date();
     }
 
 
