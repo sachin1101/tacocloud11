@@ -4,11 +4,13 @@ import com.springinaction.tacocloud.model.Order;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Slf4j
+@Repository
 public class OrderListRepositoryDBImpl implements  OrderListRepositoryDB {
 
 
