@@ -1,4 +1,4 @@
-package com.springinaction.tacocloud.security.model;
+package com.springinaction.tacocloud.model;
 
 import lombok.AccessLevel;
 import lombok.Data;
