@@ -48,6 +48,9 @@ public class Order {
 
     private Date placedAt;
 
+    @ManyToOne
+    private User user;
+
     public void addToTacoList(Taco taco)
     {
         if(tacoList ==null)

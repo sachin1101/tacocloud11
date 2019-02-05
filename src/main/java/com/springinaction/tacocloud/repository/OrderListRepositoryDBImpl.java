@@ -1,8 +1,10 @@
 package com.springinaction.tacocloud.repository;
 
 import com.springinaction.tacocloud.model.Order;
+import com.springinaction.tacocloud.model.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -35,6 +37,11 @@ public class OrderListRepositoryDBImpl implements  OrderListRepositoryDB {
 
     @Override
     public Order save(Order orderItem) {
+        return null;
+    }
+
+    @Override
+    public Object findByUserOrderByPlacedAtDesc(User user, Pageable pageable) {
         return null;
     }
 

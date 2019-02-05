@@ -1,0 +1,43 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost/tacocloud
+    password: TEST
+    username: TEST
+    schema:
+    - order-schema.sql
+    - ingredient-schema.sql
+    - taco-schema.sql
+    - user-schema.sql
+    data:
+    - ingredients.sql
+  # driver-class-name: oracle.jdbc.driver.OracleDriver
+  # url: jdbc:oracle:thin:@localhost:1521:xe
+  thymeleaf:
+    cache: false
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+server:
+  port: 9090
+  ssl:
+    key-store: file:///D/Code/tacocloud11/src/main/resources/mykeys.jks
+    key-alias: tomcat
+    key-store-password: default
+    key-password: default
+
+logging:
+  level:
+    root: WARN
+    org.springframework.security: DEBUG
+  path: d:\logs
+  file: TacoCloud.log
+
+greeting:
+  welcome: You are using ${spring.application.name}.
+
+
+taco:
+  orders:
+    page-size: 20

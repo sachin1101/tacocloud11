@@ -1,4 +1,4 @@
-package com.springinaction.tacocloud.controllers;
+package com.springinaction.tacocloud.security.model;
 
 
 import com.springinaction.tacocloud.model.RegistrationForm;
